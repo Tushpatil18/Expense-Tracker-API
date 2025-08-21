@@ -8,7 +8,7 @@ class AuthAndExpenseTests(APITestCase):
     def setUp(self):
         self.register_url = reverse("register")
         self.login_url = reverse("login")
-        self.expenses_url = reverse("expense-list")  # from router basename="expense"
+        self.expenses_url = reverse("expense-list")  
 
         self.user_data = {
             "email": "testuser@example.com",
@@ -94,7 +94,7 @@ class AuthAndExpenseTests(APITestCase):
         self.assertEqual(r.status_code, status.HTTP_200_OK)
         self.assertEqual(float(r.data["amount"]), 150.00)
 
-        # monthly summary should reflect amount under "2025-08"
+        
         r = self.client.get(reverse("monthly-summary"))
         self.assertEqual(r.status_code, status.HTTP_200_OK)
         self.assertIn("2025-08", r.data)
