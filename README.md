@@ -20,8 +20,15 @@ A Django REST Framework backend that allows multiple users to track their expens
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/<your-username>/expense-tracker-api.git
-cd expensr
+git clone https://github.com/Tushpatil18/Expense-Tracker-API.git
+cd Expense-Tracker-API
+```
+### Create virtual environment
+```bash
+python -m venv venv
+source venv/bin/activate  # I used this because i am working on Mac
+venv\Scripts\activate     # For Windows
+
 pip install -r requirements.txt
 
 ```
