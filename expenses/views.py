@@ -11,7 +11,7 @@ from .models import Expense
 from .serializers import RegisterSerializer, ExpenseSerializer
 
 
-# ---- Auth ----
+# Auth
 @api_view(["POST"])
 def register(request):
     """
@@ -40,17 +40,16 @@ def login(request):
     return Response({"access": str(refresh.access_token), "refresh": str(refresh)})
 
 
-# ---- Permissions ----
+# Permissions
 class IsOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         return obj.user == request.user
 
 
-# ---- Expenses CRUD ----
+# Expenses CRUD
 class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwner]
-    # Ordering allowed by 'date' and 'amount'
     ordering_fields = ["date", "amount"]
 
     def get_queryset(self):
@@ -72,7 +71,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-# ---- Monthly Summary ----
+# Monthly Summary
 class MonthlySummaryView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
